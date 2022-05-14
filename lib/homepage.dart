@@ -54,8 +54,11 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       data = preferences.getString("color");
       log("----------------------------------------------------------${data}");
+      colorname = color[int.parse(data!) - 1].color;
     });
   }
+
+   int index = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 10, left: 15, right: 15),
+            padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
             child: GridView.count(
               crossAxisCount: 6,
               crossAxisSpacing: 5.0,
@@ -83,15 +86,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   log("current drop == >${p}");
                   log("-------${color[index].id}");
                 });
-                const SizedBox(
-                  height: 10,
-                  // item(color1[index], () {
-                  //   setState(() {
-                  //     colorname = color[index];
-                  //   });
-                  //   log("-------${colorname}");
-                  // }),
-                );
+                // const SizedBox(
+                //   height: 10,
+                //   // item(color1[index], () {
+                //   //   setState(() {
+                //   //     colorname = color[index];
+                //   //   });
+                //   //   log("-------${colorname}");
+                //   // }),
+                // );
               }),
             ),
           ),
@@ -110,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 size: 40,
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -125,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
         //   shape: const CircleBorder(),
         // ),
 
-        InkWell(
+        GestureDetector(
       onTap: voidCallback,
       child: Container(
         decoration: BoxDecoration(
